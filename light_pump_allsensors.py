@@ -87,7 +87,7 @@ def message(client, topic, message):
     # has a new message.
     print("New message on topic {0}: {1}".format(topic, message))
 
-    if (topic == 'femur/feeds/pump') and (message == '1') or (moist_value < 60):
+    if (topic == 'femur/feeds/pump') and (message == '1') or (moist_value < 70):
         print('motor on')
         kit.motor1.throttle = 1
     else:
@@ -151,5 +151,5 @@ while True:
             mqtt_client.publish(humidity_feed, humidity_value)
             mqtt_client.publish(soil_feed, moist_value)
             mqtt_client.publish(light_feed, light_value)
-            print("Sent!")
+            print("Data Published!")
             print(str(data_interval) + ' seconds to next data drop')
