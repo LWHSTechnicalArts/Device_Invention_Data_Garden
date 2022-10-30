@@ -135,7 +135,7 @@ while True:
             print(str(data_interval) + ' seconds to next data drop')
             
             #actions
-            if moist_value < 50:
+            if moist_value < 60:
                 kit.motor1.throttle = 1
                 print('watering')
                 time.sleep(20)
