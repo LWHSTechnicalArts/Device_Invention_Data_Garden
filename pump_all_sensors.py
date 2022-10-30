@@ -133,3 +133,10 @@ while True:
             mqtt_client.publish(light_feed, light_value)
             print("Sent!")
             print(str(data_interval) + ' seconds to next data drop')
+            
+            #actions
+            if moist_value < 50:
+                kit.motor1.throttle = 1
+                print('watering')
+                time.sleep(20)
+                kit.motor1.throttle = 0
