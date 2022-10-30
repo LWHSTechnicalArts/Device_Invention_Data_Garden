@@ -1,6 +1,5 @@
 # SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
-# modified by akleindolph
 
 import time
 import board
@@ -88,17 +87,18 @@ def message(client, topic, message):
     # has a new message.
     print("New message on topic {0}: {1}".format(topic, message))
 
-    if (topic == 'femur/feeds/pump') and (message == '1'): 
+    if (topic == 'femur/feeds/pump') and (message == '1') or (moist_value < 60):
         print('motor on')
         kit.motor1.throttle = 1
     else:
         print('motor off')
         kit.motor1.throttle = 0
-    
-    if (topic == 'femur/feeds/grow_light') and (message == '1'):
+
+    if (topic == 'femur/feeds/grow_light') and (message == '1') or (light_value < 400):
+        print('grow lights on')
         pixels.fill(growcolor1)
         pixels.show()
-    else:
+    if (topic == 'femur/feeds/grow_light') and (message == '0'):
         print('grow lights off')
         pixels.fill(off)
         pixels.show()
@@ -145,7 +145,7 @@ while True:
             print("moisture: " + str(moist_value))
             light_value = veml7700.light
             print("Ambient light:", veml7700.light)
-            
+
             # Send a new message
             mqtt_client.publish(temperature_feed, temp_value)
             mqtt_client.publish(humidity_feed, humidity_value)
@@ -153,16 +153,3 @@ while True:
             mqtt_client.publish(light_feed, light_value)
             print("Sent!")
             print(str(data_interval) + ' seconds to next data drop')
-            
-            #actions
-        if moist_value < 60:
-            kit.motor1.throttle = 1
-            print('watering')
-            time.sleep(20)
-            kit.motor1.throttle = 0
-        if light_value < 400:
-            pixels.fill(growcolor1)
-            pixels.show()
-        else:
-            pixels.fill(off)
-            pixels.show()
