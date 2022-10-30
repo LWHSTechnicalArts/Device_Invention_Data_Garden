@@ -91,14 +91,14 @@ def message(client, topic, message):
     # has a new message.
     print("New message on topic {0}: {1}".format(topic, message))
 
-    if (topic == 'femur/feeds/pump') and (message == '1') or (moist_value < 70):
+    if (topic == 'femur/feeds/pump') and (message == '1'):
         print('motor on')
         kit.motor1.throttle = 1
     else:
         print('motor off')
         kit.motor1.throttle = 0
 
-    if (topic == 'femur/feeds/grow_light') and (message == '1') or (light_value < 400):
+    if (topic == 'femur/feeds/grow_light') and (message == '1'):
         print('grow lights on')
         pixels.fill(growcolor1)
         pixels.show()
@@ -157,3 +157,15 @@ while True:
             mqtt_client.publish(light_feed, light_value)
             print("Data Published!")
             print(str(data_interval) + ' seconds to next data drop')
+        if (light_value < 7000):
+            print('grow lights on')
+            pixels.fill(growcolor1)
+            pixels.show()
+        else:
+            print('grow lights off')
+            pixels.fill(off)
+            pixels.show()
+    if (moist_value < 70):
+        kit.motor1.throttle = 1
+        time.sleep(20)
+        kit.motor1.throttle = 0
