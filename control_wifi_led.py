@@ -60,8 +60,10 @@ def message(client, topic, message):
     print("New message on topic {0}: {1}".format(topic, message))
     if message == 'ON':
         led.value = True
+        print('led on')
     else:
         led.value = False 
+        print('led off')
 
 
 # Create a socket pool
