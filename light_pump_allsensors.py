@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
+# modified by akleindolph
 
 import time
 import board
@@ -154,8 +155,14 @@ while True:
             print(str(data_interval) + ' seconds to next data drop')
             
             #actions
-            if moist_value < 60:
-                kit.motor1.throttle = 1
-                print('watering')
-                time.sleep(20)
-                kit.motor1.throttle = 0
+        if moist_value < 60:
+            kit.motor1.throttle = 1
+            print('watering')
+            time.sleep(20)
+            kit.motor1.throttle = 0
+        if light_value < 400:
+            pixels.fill(growcolor1)
+            pixels.show()
+        else:
+            pixels.fill(off)
+            pixels.show()
