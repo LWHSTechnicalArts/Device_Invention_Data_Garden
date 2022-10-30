@@ -1,5 +1,7 @@
+# by akleindolph based on code from...
 # SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
+
 
 import time
 import board
@@ -17,20 +19,22 @@ import neopixel
 
 
 i2c = board.I2C()  # uses board.SCL and board.SDA
-kit = MotorKit(i2c=board.I2C())
-sensor = adafruit_ahtx0.AHTx0(i2c)
-ss = Seesaw(i2c, addr=0x36)
+
+sensor = adafruit_ahtx0.AHTx0(i2c)  #temperature and humidity sensor
+ss = Seesaw(i2c, addr=0x36)   #moisture sensor
 veml7700 = adafruit_veml7700.VEML7700(i2c)  #light sensor
 
-kit.motor1.throttle = 0  #turn motor off
-data_interval = 30
+kit = MotorKit(i2c=board.I2C()) #motor variables
+kit.motor1.throttle = 0  #start with motor off
 
-pixel_pin = board.A2
+pixel_pin = board.A2  #neopixel variables
 num_pixels = 16
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.7, auto_write=False)
 growcolor1 = (180, 0, 255)
 growcolor2 = (180, 200, 255)
 off = (0, 0, 0)
+
+data_interval = 30
 
 # Add a secrets.py to your filesystem that has a dictionary called secrets with "ssid" and
 # "password" keys with your WiFi credentials. DO NOT share that file or commit it into Git or other
