@@ -34,7 +34,7 @@ growcolor1 = (180, 0, 255)
 growcolor2 = (180, 200, 255)
 off = (0, 0, 0)
 
-data_interval = 30
+data_interval = 120
 
 # Add a secrets.py to your filesystem that has a dictionary called secrets with "ssid" and
 # "password" keys with your WiFi credentials. DO NOT share that file or commit it into Git or other
@@ -136,7 +136,7 @@ while True:
             mqtt_client.loop()
         except:
             print ("mqtt fail")
-            time.sleep(5)
+            time.sleep(30)
             pass
         if (i!=0) and (i<data_interval):
             time.sleep(1)
@@ -157,8 +157,8 @@ while True:
             mqtt_client.publish(light_feed, light_value)
             print("Data Published!")
             print(str(data_interval) + ' seconds to next data drop')
-        if (light_value < 7000):
-            print('grow lights on')
+        if (light_value < 6500):
+            #print('grow lights on')
             pixels.fill(growcolor1)
             pixels.show()
         else:
