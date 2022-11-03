@@ -130,14 +130,16 @@ print("Connecting to Adafruit IO...")
 mqtt_client.connect()
 
 while True:
-    # Poll the message queue
+   
     for i in range(0,data_interval,1):
         try:
+            # Poll the message queue
             mqtt_client.loop()
         except:
             print ("mqtt fail")
             time.sleep(30)
             pass
+            
         if (i!=0) and (i<data_interval):
             time.sleep(1)
         else:
@@ -157,15 +159,17 @@ while True:
             mqtt_client.publish(light_feed, light_value)
             print("Data Published!")
             print(str(data_interval) + ' seconds to next data drop')
-        if (light_value < 6500):
-            #print('grow lights on')
-            pixels.fill(growcolor1)
-            pixels.show()
-        else:
-            print('grow lights off')
-            pixels.fill(off)
-            pixels.show()
-    if (moist_value < 70):
-        kit.motor1.throttle = 1
-        time.sleep(20)
-        kit.motor1.throttle = 0
+            
+            if (light_value < 6500):
+                #print('grow lights on')
+                pixels.fill(growcolor1)
+                pixels.show()
+            else:
+                print('grow lights off')
+                pixels.fill(off)
+                pixels.show()
+    
+        if (moist_value < 70):
+            kit.motor1.throttle = 1
+            time.sleep(20)
+            kit.motor1.throttle = 0
