@@ -28,8 +28,10 @@ kit = MotorKit(i2c=board.I2C()) #motor variables
 kit.motor1.throttle = 0  #start with motor off
 
 pixel_pin = board.A2  #neopixel variables
-num_pixels = 16
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.9, auto_write=False)
+num_pixels = 24
+ORDER = neopixel.RGBW
+ 
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.5, auto_write=False, pixel_order=ORDER)
 growcolor1 = (255, 255, 255)
 growcolor2 = (180, 200, 255)
 off = (0, 0, 0)
@@ -167,7 +169,7 @@ while True:
                 pixels.fill(off)
                 pixels.show()
 
-            if (moist_value < 60):
+            if (moist_value < 85):
                 kit.motor1.throttle = 1
                 time.sleep(20)
                 kit.motor1.throttle = 0
