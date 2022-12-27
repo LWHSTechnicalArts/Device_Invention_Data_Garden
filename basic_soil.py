@@ -1,4 +1,4 @@
-#moisture sensor example
+# moisture sensor example
 
 import time
 import board
