@@ -5,9 +5,9 @@ import time
 import board
 from adafruit_seesaw.seesaw import Seesaw
 
-i2c_bus = board.I2C()
+i2c = board.I2C()
 
-ss = Seesaw(i2c_bus, addr=0x36)
+ss = Seesaw(i2c, addr=0x36)
 
 while True:
     # read moisture level through capacitive touch pad
