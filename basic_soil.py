@@ -1,5 +1,4 @@
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
-# SPDX-License-Identifier: MIT
+#moisture sensor example
 
 import time
 import board
@@ -11,7 +10,7 @@ ss = Seesaw(i2c, addr=0x36)
 
 while True:
     # read moisture level through capacitive touch pad
-    touch = ss.moisture_read()
+    moist_sense = ss.moisture_read()
 
-    print("moisture: " + str(touch))
+    print("moisture: " + str(moist_sense))
     time.sleep(1)
