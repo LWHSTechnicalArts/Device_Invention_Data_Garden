@@ -7,7 +7,9 @@
 secrets = {
     'ssid' : 'StudentNet',
     'password' : '',
+    'timezone' : "America/Los_Angeles", # http://worldtimeapi.org/timezones
     'aio_username' : 'my_adafruit_io_username',
     'aio_key' : 'my_adafruit_io_key',
-    'timezone' : "America/Los_Angeles", # http://worldtimeapi.org/timezones
+    'broker' : 'io.adafruit.com',
+    'port' : 1883
     }
