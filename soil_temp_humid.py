@@ -97,4 +97,4 @@ while True:
     mqtt_client.publish(humidity_feed, humidity_value)
     mqtt_client.publish(soil_feed, moist_value)
     print("Sent!")
-    time.sleep(5)
+    time.sleep(10)
