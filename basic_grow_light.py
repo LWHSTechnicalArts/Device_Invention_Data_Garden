@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2018 Kattni Rembor for Adafruit Industries
-#
 # SPDX-License-Identifier: MIT
+# Modified by akleindolph 2022
 
 """CircuitPython Essentials NeoPixel example"""
 import time
