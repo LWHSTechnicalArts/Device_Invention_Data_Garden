@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
+#modified by akleindolph 2022
 
 import time
 import ssl
@@ -15,10 +16,6 @@ i2c = board.I2C()  # uses board.SCL and board.SDA
 sensor = adafruit_ahtx0.AHTx0(i2c)
 ss = Seesaw(i2c, addr=0x36)
 
-# Add a secrets.py to your filesystem that has a dictionary called secrets with "ssid" and
-# "password" keys with your WiFi credentials. DO NOT share that file or commit it into Git or other
-# source control.
-# pylint: disable=no-name-in-module,wrong-import-order
 try:
     from secrets import secrets
 except ImportError:
@@ -41,13 +38,9 @@ temperature_feed = secrets["aio_username"] + "/feeds/temperature"
 humidity_feed = secrets["aio_username"] + "/feeds/humidity"
 soil_feed = secrets["aio_username"] + "/feeds/soil"
 
-# Setup a feed named 'onoff' for subscribing to changes
-onoff_feed = secrets["aio_username"] + "/feeds/onoff"
-
 ### Code ###
 
 # Define callback methods which are called when events occur
-# pylint: disable=unused-argument, redefined-outer-name
 def connected(client, userdata, flags, rc):
     # This function will be called when the client is connected
     # successfully to the broker.
@@ -89,7 +82,6 @@ mqtt_client.on_message = message
 print("Connecting to Adafruit IO...")
 mqtt_client.connect()
 
-photocell_val = 0
 while True:
     # Poll the message queue
     mqtt_client.loop()
