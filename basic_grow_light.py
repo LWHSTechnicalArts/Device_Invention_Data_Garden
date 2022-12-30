@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: MIT
 # Modified by akleindolph 2022
 
-"""CircuitPython Essentials NeoPixel example"""
 import time
 import board
 import neopixel
@@ -10,10 +9,10 @@ import neopixel
 pixel_pin = board.A2
 num_pixels = 24
 
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.7, auto_write=False)
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.4, auto_write=False, pixel_order=neopixel.GRBW)
 
-growcolor1 = (180, 0, 255)
-growcolor2 = (180, 200, 255)
+growcolor1 = (255, 0, 140, 100)  #RGBW = red, green, blue, white
+growcolor2 = (180, 200, 255, 0)
 
 while True:
     pixels.fill(growcolor1)
