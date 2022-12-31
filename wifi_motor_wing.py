@@ -37,7 +37,7 @@ print("Connected to %s!" % secrets["ssid"])
 ### Feeds ###
 
 # Setup a feed named 'pump' for subscribing to changes
-pump_feed = secrets["aio_username"] + "/feeds/pump"
+pump_feed = secrets["aio_username"] + "/feeds/internet_motor"
 
 ### Code ###
 
@@ -61,7 +61,7 @@ def message(client, topic, message):
     # has a new message.
     print("New message on topic {0}: {1}".format(topic, message))
 
-    if (topic == "femur/feeds/pump") and (message == '1'): 
+    if (topic == "femur/feeds/internet_motor") and (message == '1'): 
         print('motor on')
         kit.motor1.throttle = 1
     else:
