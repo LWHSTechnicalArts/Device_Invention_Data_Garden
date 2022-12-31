@@ -12,7 +12,7 @@ kit = MotorKit(i2c=board.I2C())
 while True:
     kit.motor1.throttle = 1
     print('motor on')
-    time.sleep(5.0)
+    time.sleep(10.0)
     kit.motor1.throttle = 0
     print('motor off')
-    time.sleep(5.0)
+    time.sleep(10.0)
