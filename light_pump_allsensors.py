@@ -167,7 +167,7 @@ while True:
                 pixels.fill(off)
                 pixels.show()
 
-            if (moist_value < 85):
+            if (moist_value < 80):
                 kit.motor1.throttle = 1
                 time.sleep(20)
                 kit.motor1.throttle = 0
