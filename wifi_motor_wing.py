@@ -62,7 +62,7 @@ def message(client, topic, message):
     # has a new message.
     print("New message on topic {0}: {1}".format(topic, message))
 
-    if (topic == "femur/feeds/internet_motor") and (message == '1'): 
+    if (topic == pump_feed) and (message == '1'):
         print('motor on')
         kit.motor1.throttle = 1
     else:
