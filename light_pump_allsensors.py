@@ -62,8 +62,6 @@ humidity_feed = secrets["aio_username"] + "/feeds/humidity"
 soil_feed = secrets["aio_username"] + "/feeds/soil"
 light_feed = secrets["aio_username"] + "/feeds/light"
 grow_light_feed = secrets["aio_username"] + "/feeds/grow_light"
-
-# Setup a feed named 'pump' for subscribing to changes
 pump_feed = secrets["aio_username"] + "/feeds/pump"
 
 ### Code ###
@@ -90,18 +88,18 @@ def message(client, topic, message):
     # has a new message.
     print("New message on topic {0}: {1}".format(topic, message))
 
-    if (topic == 'femur/feeds/pump') and (message == '1'):
+    if (topic == pump_feed) and (message == '1'):
         print('motor on')
         kit.motor1.throttle = 1
     else:
         print('motor off')
         kit.motor1.throttle = 0
 
-    if (topic == 'femur/feeds/grow_light') and (message == '1'):
+    if (topic == grow_light_feed) and (message == '1'):
         print('grow lights on')
         pixels.fill(growcolor1)
         pixels.show()
-    if (topic == 'femur/feeds/grow_light') and (message == '0'):
+    if (topic == grow_light_feed) and (message == '0'):
         print('grow lights off')
         pixels.fill(off)
         pixels.show()
