@@ -15,10 +15,6 @@ kit = MotorKit(i2c=board.I2C())
 
 kit.motor1.throttle = 0  #turn motor off
 
-# Add a secrets.py to your filesystem that has a dictionary called secrets with "ssid" and
-# "password" keys with your WiFi credentials. DO NOT share that file or commit it into Git or other
-# source control.
-# pylint: disable=no-name-in-module,wrong-import-order
 try:
     from secrets import secrets
 except ImportError:
@@ -37,18 +33,16 @@ print("Connected to %s!" % secrets["ssid"])
 
 ### Feeds ###
 
-# Setup a feed named 'pump' for subscribing to changes
+# Setup a feed named 'pump_feed' for subscribing to changes
 pump_feed = secrets["aio_username"] + "/feeds/internet_motor"
 
 ### Code ###
 
-# Define callback methods which are called when events occur
-# pylint: disable=unused-argument, redefined-outer-name
 def connected(client, userdata, flags, rc):
     # This function will be called when the client is connected
     # successfully to the broker.
     print("Connected to Adafruit IO! Listening for topic changes on %s" % pump_feed)
-    # Subscribe to all changes on the onoff_feed.
+    # Subscribe to all changes on the pump_feed.
     client.subscribe(pump_feed)
 
 
