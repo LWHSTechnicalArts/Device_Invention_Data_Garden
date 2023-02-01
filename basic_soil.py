@@ -13,4 +13,4 @@ while True:
     moist_sense = ss.moisture_read()
 
     print("moisture: " + str(moist_sense))
-    time.sleep(1)
+    time.sleep(2)
