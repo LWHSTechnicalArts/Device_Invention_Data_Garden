@@ -8,6 +8,7 @@ import board
 import ssl
 import socketpool
 import wifi
+import microcontroller
 import adafruit_minimqtt.adafruit_minimqtt as MQTT
 
 import adafruit_ahtx0
@@ -133,6 +134,7 @@ while True:
             mqtt_client.loop()
         except:
             print ("mqtt fail")
+            #microcontroller.reset()
             time.sleep(30)
             pass
 
