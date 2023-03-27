@@ -134,7 +134,7 @@ while True:
             mqtt_client.loop()
         except:
             print ("mqtt fail")
-            # microcontroller.reset()
+            microcontroller.reset()
             time.sleep(30)
             pass
 
